@@ -12,13 +12,22 @@ function showTable(){
 
 (function getProducts () {
 	
-	var products = [];
 	$("#wholetable").find("td:nth-child(2)").each(function () {
 		var elem = this;
-		products.push(elem.innerHTML);
+		
+		var option = document.createElement("option")
+		option.innerHTML = elem.innerHTML;
+		document.getElementById("selectbasic").appendChild(option)
 	});
-			console.log(products);
 })();
+
+function getCurrentProduct(){
+	
+	var suppDropdown = document.getElementById("selectbasic");
+	console.log(suppDropdown.options[suppDropdown.selectedIndex].value);
+	return suppDropdown.options[suppDropdown.selectedIndex].value
+}
 
 var button = document.getElementById("tablebutton");
 button.addEventListener("click", showTable);
+
