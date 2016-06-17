@@ -5,6 +5,9 @@ var t = [];
 buttonFilter.addEventListener("click", gogoFilter);
 buttonTable.addEventListener("click", showTable);
 
+function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+}
 
 function showTable() {
 
@@ -16,13 +19,17 @@ function showTable() {
 }
 
 (function getProducts() {
-
+    var A = [];
     $("#wholetable").find("td:nth-child(2)").each(function() {
         var elem = this;
-        var option = document.createElement("option")
-        option.innerHTML = elem.innerHTML;
-        document.getElementById("selectbasic").appendChild(option)
+        A.push(this.innerHTML);
     });
+    A = A.filter(onlyUnique);
+    for (var i = 0; i < A.length; i++) {
+        var option = document.createElement("option");
+        option.innerHTML = A[i];
+        document.getElementById("selectbasic").appendChild(option);
+    }
 })();
 
 function showSuppliers() {
