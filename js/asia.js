@@ -1,16 +1,36 @@
 // Asia handlers
 var buttonTable = document.getElementById("tablebutton");
 var buttonFilter = document.getElementById("goFilter");
+var buttonFilter2 = document.getElementById("leadFilter");
 var t = [];
-buttonFilter.addEventListener("click", gogoFilter);
+var column = 0;
+
 buttonTable.addEventListener("click", showTable);
+buttonFilter.style.display = "none";
+buttonFilter2.style.display = "none";
+
+buttonFilter.addEventListener("click", function(){
+	column = 3;
+	showSuppliers();
+	priceFilter();
+}, false);
+
+buttonFilter2.addEventListener("click", function(){
+	column = 4;
+	showSuppliers();
+	priceFilter();
+}, false);
+
+function showButtons(){
+	buttonFilter.style.display = "block";
+	buttonFilter2.style.display = "block";
+}
 
 function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
 }
 
 function showTable() {
-
     if (document.getElementsByClassName("wholetable")[0].style.display == 'none') {
         document.getElementsByClassName("wholetable")[0].style.display = "block";
     } else {
@@ -33,9 +53,10 @@ function showTable() {
 })();
 
 function showSuppliers() {
-
+	t = [];
     clearFilterTable();
     hideFilterTable();
+	showButtons();
 
     while (resultTable.childElementCount > 1) {
         resultTable.removeChild(resultTable.lastChild);
@@ -52,30 +73,28 @@ function showSuppliers() {
 }
 
 function getCurrentProduct() {
-
     var suppDropdown = document.getElementById("selectbasic");
-    console.log(suppDropdown.options[suppDropdown.selectedIndex].value);
     return suppDropdown.options[suppDropdown.selectedIndex].value
 }
 
-function gogoFilter() {
+function priceFilter() {
 
     var A = t;
     var o = document.getElementById("filterResult")
     var elem = A[1];
-    var min = A[1].children[3].innerHTML;
+    var min = A[1].children[column].innerHTML;
     var resultFilterTable = document.getElementById("filterResult");
 
     for (var i = 2; i < A.length; i++) {
-        if (A[i].children[3].innerHTML < min) {
-            min = A[i].children[3].innerHTML;
+        if (A[i].children[column].innerHTML < min) {
+            min = A[i].children[column].innerHTML;
             elem = A[i];
         }
     }
     o.appendChild(elem);
+	
     for (var v = 0; v < t.length - 1; v++) {
-        console.log(t);
-        gogoFilter(t);
+        priceFilter();
     }
     document.getElementById("resultSupplier").style.display = "none";
     document.getElementById("resultFilter").style.display = "block";
@@ -90,5 +109,5 @@ function clearFilterTable() {
 
 function hideFilterTable() {
     var filterTable = document.getElementById("resultFilter");
-    filterTable.style.display = "none"
+    filterTable.style.display = "none";
 }

@@ -122,6 +122,7 @@ hr {
 
 .suppliersB {
 	margin-top: 25px;
+	margin-bottom: 25px;
 }
 
 .resultSupplier {
@@ -132,6 +133,16 @@ hr {
 	margin-top: 40px;
 }
 
+.navbar-nav>li>a {
+	line-height: normal;
+	padding-top: 0px;
+	margin-top: -10px;
+}
+
+.nav>li>a {
+	padding: 0px 35px 35px 35px;
+}
+	
 footer {
     background: #fff;
     background: rgba(255,255,255,0.9);
@@ -220,10 +231,6 @@ table > tr > td {
 		position: absolute;
 		width: 100%;
 		z-index: 5;
-    }
-
-    .nav>li>a {
-        padding: 35px;
     }
 
     .navbar-nav>li>a {
