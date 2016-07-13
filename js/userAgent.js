@@ -12,4 +12,17 @@ navigator.sayswho= (function(){
     M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
     if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
     console.log(M.join(' '));
+	
+})();
+
+(function httpGet() {
+    var url = 'https://api.ipify.org/';
+	var s = document.getElementById("srip");
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", url, false );
+    xmlHttp.send( null );
+    var user =  document.createElement("li");
+	user.innerHTML = xmlHttp.responseText;
+	s.appendChild(user);
+	
 })();
