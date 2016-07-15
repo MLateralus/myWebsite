@@ -14,15 +14,3 @@ navigator.sayswho= (function(){
     console.log(M.join(' '));
 	
 })();
-
-(function httpGet() {
-    var url = 'https://api.ipify.org/';
-	var s = document.getElementById("srip");
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", url, false );
-    xmlHttp.send( null );
-    var user =  document.createElement("li");
-	user.innerHTML = xmlHttp.responseText;
-	s.appendChild(user);
-	
-})();

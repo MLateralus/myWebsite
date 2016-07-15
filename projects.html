@@ -80,28 +80,32 @@
                     <h2 class="intro-text text-center">About 
                       <!--  <strong>Me</strong>  -->
                     </h2>
-                    <hr>
-					<div id="srip"></div>
-					FILL WITH ANGULAR DYNAMIC TABS
-	
-	
+                    <hr>	
+					<p>
+					There are some things I did either as university projects, or for my own purposes, adn some actualy without a strict purpose.
+					Most of them can be found on my github page. 
+					</p>
+					<div id="projects_tab" ng-app="my_projects">
+						<div role="tabpanel" ng-controller="tabCtrl">
+							<ul class="nav nav-tabs" role="tablist">
+								<li role="presentation" ng-repeat="tab in tabs" ng-click="selectTab($index)" ng-class="{'active':selectedTab == $index}">
+									<a data-target="#tab" aria-controls="" role="tab" data-toggle="tab">{{tab.id}}</a>
+								</li>
+							</ul>
+							<div class="tab-content">
+								<div role="tabpanel" class="tab-pane active" id="tab">
+									<h1>Project: {{tabs[selectedTab].id}}</h1>
+									<div id="tab-inner" >
+									<h3>{{tabs[selectedTab].introduction}}</h3>
+									<p>{{tabs[selectedTab].content}}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="box">
-                <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">Placeholder
-                        <strong>for future</strong>
-                    </h2>
-                    <hr>
-                    <p>Some info here</p>
-                </div>
-            </div>
-        </div>
-
     </div>
     <!-- /.container -->
 
@@ -123,7 +127,10 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
+	
+	<!-- Angular tabs -->
+	<script src="js/app.js"></script>
+	
 	<!-- Custom scripts -->
 	<script src="js/userAgent.js"> </script>
 	
