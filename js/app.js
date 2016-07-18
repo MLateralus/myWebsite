@@ -35,6 +35,13 @@
         $scope.selectedTab = 0; 
         $scope.selectTab = function(index){
             $scope.selectedTab = index;
+			appendCode($scope.tabs[index].id)
         }
     }])
+	
+	function appendCode(i){
+		console.log(i);
+		
+	}
+	
 })();
