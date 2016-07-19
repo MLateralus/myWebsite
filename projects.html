@@ -20,7 +20,10 @@
 
     <!-- Custom CSS -->
     <link href="css/business-casual.css" rel="stylesheet">
-
+	
+	<!-- rainbow syntax highlighter -->
+	<link href="css/rainbow-min.css" rel="stylesheet" type="text/css">
+	
     <!-- Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
@@ -100,9 +103,9 @@
 								<div role="tabpanel" class="tab-pane active" id="tab">
 									<h1>Project: {{tabs[selectedTab].id}}</h1>
 									<div id="tab-inner">
-									<h3>{{tabs[selectedTab].introduction}}</h3>
+									<p>{{tabs[selectedTab].introduction}}</p>
 									<p>{{tabs[selectedTab].content}}</p>
-									<p id ="code">{{tabs[selectedTab].code}}</p>
+									<p id="my-code"></p>
 									</div>
 								</div>
 							</div>
@@ -113,90 +116,102 @@
         </div>
     </div>
     <!-- /.container -->
-<div class="codes" style="display:none">
-	<div id="packpub">
-		<pre>
-		class Download {
-			
-			WebDriver driver = new ChromeDriver();	
-			
-			void account_log (String clogin, String cpassword) throws InterruptedException {
-				driver.get("https://www.packtpub.com/");
-				
-				/* Recognize viewport */
-				List<WebElement> menu_icon = driver.findElements(By.id("menuIcon"));
-				if (menu_icon.size() > 0  && menu_icon.get(0).isDisplayed()){
-					Thread.sleep(1000);
-					menu_icon.get(0).click();
-					Thread.sleep(1000);
-					List<WebElement> login = driver.findElements(By.className("respoLogin"));
-					WebElement log_button = login.get(0);
-					log_button.click();
-				}
-				/* Need to get this work for a wider vieport */
-				else if (menu_icon.size() > 0  && !menu_icon.get(0).isDisplayed()){
-					Thread.sleep(1000);
-					List<WebElement> log_wide = driver.findElements(By.className("float-left"));
-					if(log_wide.size() > 0){
-						Thread.sleep(1000);
-						log_wide.get(2).click();
-					}
-					else{
-						throw new InterruptedException("Viewport not recognized");
-					}
-				}
-				WebElement email = driver.findElement(By.id("email"));
-				WebElement pswd = driver.findElement(By.id("password"));
-				
-				email.sendKeys(clogin);
-				pswd.sendKeys(cpassword);
-				
-				WebElement login_button = driver.findElement(By.id("edit-submit-1"));
-				login_button.click();
-			}
-			
-			void download_free_book () throws InterruptedException {
+	<div class="codes" style="display:none">
+		<div id="packtpub">
+<pre><code data-language="Java">
+	WebDriver driver = new ChromeDriver();
+	void account_log (String clogin, String cpassword) throws InterruptedException {
+		driver.get("https://www.packtpub.com/");
 
-				/* Now we are logged in */
-				driver.get("https://www.packtpub.com/packt/offers/free-learning");
-				
-				List<WebElement> download_book = driver.findElements(By.className("book-claim-token-inner"));
-				List<WebElement> title_div = driver.findElements(By.className("dotd-title"));
-				WebElement title = title_div.get(0);
-				String book_title = title.getAttribute("innerHTML");
-				book_title = "Todays book is " + book_title.substring((book_title.indexOf("<h2>") + "<h2>".length()), book_title.indexOf("</h2>"));
-				System.out.println(download_book);
-				download_book.get(0).click();
-				
-				driver.close();
-				JOptionPane.showMessageDialog(new JFrame(), book_title, "Dialog",
-				JOptionPane.INFORMATION_MESSAGE);
+		/* Recognize viewport */
+		List<WebElement> menu_icon = driver.findElements(By.id("menuIcon"));
+		if (menu_icon.size() > 0  && menu_icon.get(0).isDisplayed()){
+			menu_icon.get(0).click();
+			Thread.sleep(1000);
+			List<WebElement> login = driver.findElements(By.className("respoLogin"));
+			WebElement log_button = login.get(0);
+			log_button.click();
+		}
+		/* Need to get this work for a wider vieport */
+		else if (menu_icon.size() > 0  && !menu_icon.get(0).isDisplayed()){
+			List<WebElement> log_wide = driver.findElements(By.className("float-left"));
+			if(log_wide.size() > 0){
+				Thread.sleep(1000);
+				log_wide.get(2).click();
+			}
+			else{
+				throw new InterruptedException("Viewport not recognized");
 			}
 		}
+		WebElement email = driver.findElement(By.id("email"));
+		WebElement pswd = driver.findElement(By.id("password"));
+		
+		email.sendKeys(clogin);
+		pswd.sendKeys(cpassword);
+		
+		WebElement login_button = driver.findElement(By.id("edit-submit-1"));
+		login_button.click();
+	}
+</code></pre>
 
-		public class Book {
-			
-			public static void main(String[] args) throws InterruptedException, IOException {
+	<p> I choose chrome driver because its the one im most familiar with. Recognizing viewport is important, because depending on the screen width, different elements are present on screen, and so different elements with different id's
+	</p>
+	
+<pre><code data-language="Java">
+	void download_free_book () throws InterruptedException {
+
+		/* Now we are logged in */
+		driver.get("https://www.packtpub.com/packt/offers/free-learning");
+		
+		List<WebElement> download_book = driver.findElements(By.className("book-claim-token-inner"));
+		List<WebElement> title_div = driver.findElements(By.className("dotd-title"));
+		WebElement title = title_div.get(0);
+		String book_title = title.getAttribute("innerHTML");
+		book_title = "Todays book is " + book_title.substring((book_title.indexOf("<h2>") + "<h2>".length()), book_title.indexOf("</h2>"));
+		System.out.println(download_book);
+		download_book.get(0).click();
+		
+		driver.close();
+		JOptionPane.showMessageDialog(new JFrame(), book_title, "Dialog",
+		JOptionPane.INFORMATION_MESSAGE);
+	}
+}
+</code></pre>
+
+	<p> Packtpub service offers free book of the day for registered users. This piece of code proceeds after you log in, and saves the book of the day for you.
+	</p>
+
+<pre><code data-language="Java">
+public class Book {	
+	public static void main(String[] args) throws InterruptedException, IOException {
+		
+		String credentials = new String(Files.readAllBytes(Paths.get(System.getProperty("user.dir") + "\\" + "Credentials.txt")));
+		String clogin = credentials.substring(credentials.indexOf("login:") + "login:".length(),credentials.indexOf("password"));
+		String cpassword = credentials.substring(credentials.indexOf("password:") + "password:".length(),credentials.indexOf("location"));
+		String clocation = credentials.substring(credentials.indexOf("location:") + "location:".length(),credentials.length());
+		
+		System.setProperty("webdriver.chrome.driver", clocation);
+		Download obj = new Download();
+		obj.account_log(clogin,cpassword);
+		obj.download_free_book();	
+	}
+}			
+</code></pre>
+
+			<p>Now all left to do is to initialize the whole thing with credentials! </p>
+			<p>Note: The dialog box takes time show up in desktop for unkown reasons, maybe some memory cleaning or some action is working in background longer than expected.</p>
+		</div>
+		
+		<div id="packtpsub">
+			<pre>
+				<code data-language="C">
 				
-				String credentials = new String(Files.readAllBytes(Paths.get(System.getProperty("user.dir") + "\\" + "Credentials.txt")));
-				String clogin = credentials.substring(credentials.indexOf("login:") + "login:".length(),credentials.indexOf("password"));
-				String cpassword = credentials.substring(credentials.indexOf("password:") + "password:".length(),credentials.indexOf("location"));
-				String clocation = credentials.substring(credentials.indexOf("location:") + "location:".length(),credentials.length());
-				System.out.println(clogin);
-				System.out.println(cpassword);
-				System.out.println(clocation);
-				
-				System.setProperty("webdriver.chrome.driver", clocation);
-				Download obj = new Download();
-				obj.account_log(clogin,cpassword);
-				obj.download_free_book();	
-
-
-			}
-		}
-		</pre>
+				</code>
+			</pre>
+		</div>
+		
 	</div>
-</div>
+	
     <footer>
         <div class="container">
             <div class="row">
@@ -209,6 +224,12 @@
 	
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
+	
+	<!-- Rainbow syntax highlighter -->
+	<script src="js/rainbow-custom.min.js"></script>
+	<script src="js/rainbow-c.js"></script>
+	<script src="js/rainbow-java.js"></script>
+	<script src="js/rainbow-javascript.js"></script>
 	
 	<!-- Angular JS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>

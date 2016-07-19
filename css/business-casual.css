@@ -164,11 +164,9 @@ hr {
     border-bottom: 3px solid #fff;
 }
 
-xmp {
-	margin-left:15px;
-	margin-right:15px;
-	font-size: 12px;
-	letter-spacing: -1px;
+#packtpub > p {
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .ng-scope>ul>li>a {
