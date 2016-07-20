@@ -13,7 +13,7 @@
 		{
 			linker: 'embed-clock',
 			id:"Embedded clock",
-			content: "tab2"
+			content: "As part of university project I did clock for ARM processor board. After clicking the button to set the hour, the time counter starts, and using Quartz it precisely measures time."
 		},
 		{
 			linker: 'voice-assist',

@@ -116,9 +116,9 @@
         </div>
     </div>
     <!-- /.container -->
-	<div class="codes" style="display:none">
-		<div id="packtpub">
-<pre><code data-language="Java">
+<div class="codes" style="display:none">
+   <div id="packtpub">
+      <pre><code data-language="Java">
 	WebDriver driver = new ChromeDriver();
 	void account_log (String clogin, String cpassword) throws InterruptedException {
 		driver.get("https://www.packtpub.com/");
@@ -153,11 +153,9 @@
 		login_button.click();
 	}
 </code></pre>
-
-	<p> I choose chrome driver because its the one im most familiar with. Recognizing viewport is important, because depending on the screen width, different elements are present on screen, and so different elements with different id's
-	</p>
-	
-<pre><code data-language="Java">
+      <p> I choose chrome driver because its the one im most familiar with. Recognizing viewport is important, because depending on the screen width, different elements are present on screen, and so different elements with different id's
+      </p>
+      <pre><code data-language="Java">
 	void download_free_book () throws InterruptedException {
 
 		/* Now we are logged in */
@@ -177,11 +175,9 @@
 	}
 }
 </code></pre>
-
-	<p> Packtpub service offers free book of the day for registered users. This piece of code proceeds after you log in, and saves the book of the day for you.
-	</p>
-
-<pre><code data-language="Java">
+      <p> Packtpub service offers free book of the day for registered users. This piece of code proceeds after you log in, and saves the book of the day for you.
+      </p>
+      <pre><code data-language="Java">
 public class Book {	
 	public static void main(String[] args) throws InterruptedException, IOException {
 		
@@ -197,26 +193,313 @@ public class Book {
 	}
 }			
 </code></pre>
-
-			<p>Now all left to do is to initialize the whole thing with credentials! </p>
-			<p>Note: The dialog box takes time show up in desktop for unkown reasons, maybe some memory cleaning or some action is working in background longer than expected.</p>
-		</div>
-		
-		<div id="packtpsub">
-			<pre>
-				<code data-language="C">
-				
-				</code>
-			</pre>
-		</div>
-		
-	</div>
+      <p>Now all left to do is to initialize the whole thing with credentials! </p>
+      <p>Note: The dialog box takes time show up in desktop for unkown reasons, maybe some memory cleaning or some action is working in background longer than expected.</p>
+   </div>
+   <div id="embed-clock">
+      <br>Main file contains of only initializing the whole thing and the infinite while loop to have the programm working
+      <br>
+      <pre>
+		  				<code data-language="C">
+uint8_t minutes;
+uint8_t seconds;
+uint8_t start_counting;
+			
+int main(void) {
 	
+    lcd_init();
+    buttons_init();
+    tpm_init();
+		rtc_init();
+		SystemCoreClockUpdate();
+    time_reset(&minutes,&seconds);
+	
+	   while (1);
+    };
+</code>
+</pre>
+      <br>
+      <div id="uButtons"></div>
+      <br> Here is the buttons functionality. Button are placed as two pins [SW1_PIN] and [SW3_PIN]<br>
+      <br>
+      <pre>
+		  		  <code data-language="C">
+void buttons_init()
+{
+    /* Enable port clocks */
+    SIM->SCGC5 |=  SIM_SCGC5_PORTC_MASK;
+		SIM->SCGC5 |=  SIM_SCGC5_PORTE_MASK;
+
+    /* Configure pin as GPIO */
+    PORTC->PCR[SW1_PIN] |= PORT_PCR_MUX(1);
+    PORTC->PCR[SW3_PIN] |= PORT_PCR_MUX(1);
+    /* Enable internal pullup resistor */
+    PORTC->PCR[SW1_PIN] |= PORT_PCR_PE_MASK | PORT_PCR_PS_MASK;
+    PORTC->PCR[SW3_PIN] |= PORT_PCR_PE_MASK | PORT_PCR_PS_MASK;
+	
+    /* Interrupt on falling edge */
+    PORTC->PCR[SW1_PIN] |= PORT_PCR_IRQC(0x0A);
+    PORTC->PCR[SW3_PIN] |= PORT_PCR_IRQC(0x0A);
+
+    /* Enable IRQ */
+    NVIC_ClearPendingIRQ(PORTC_PORTD_IRQn);
+    NVIC_EnableIRQ(PORTC_PORTD_IRQn);
+    NVIC_SetPriority(PORTC_PORTD_IRQn, 1);
+}
+
+void PORTC_PORTD_IRQHandler()
+{
+    /* Interrupt on SW1 detected */
+    if (PORTC->PCR[SW1_PIN] & PORT_PCR_ISF_MASK) {
+			
+			  time_counting(&minutes, &seconds, 1);
+        lcd_displaytime(minutes, seconds);
+        /* Clear */
+        PORTC->PCR[SW1_PIN] |= PORT_PCR_ISF_MASK;
+    }
+		/* Interrupt on SW3 detected */
+	  if (PORTC->PCR[SW3_PIN] & PORT_PCR_ISF_MASK) {
+			  time_counting(&minutes,&seconds, 60);
+        lcd_displaytime(minutes,seconds);
+        /* Clear */
+        PORTC->PCR[SW3_PIN] |= PORT_PCR_ISF_MASK;
+    }
+	}
+</code>
+</pre>
+      <div id="uLCD"></div>
+      <br>
+      <br>LCD Display file was created with a lot help from the university files, as it is a little complex. Here the code is cut a little to maintain the readibility. <br>
+      <pre>
+		  		  <code data-language="C">
+const static uint8_t LCD_Frontplane_Pin[LCD_NUM_FRONTPLANE_PINS] = {
+    LCD_FRONTPLANE0, LCD_FRONTPLANE1, LCD_FRONTPLANE2, LCD_FRONTPLANE3,
+    LCD_FRONTPLANE4, LCD_FRONTPLANE5, LCD_FRONTPLANE6, LCD_FRONTPLANE7
+};
+
+void lcd_init(void)
+{
+    SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK |
+        SIM_SCGC5_PORTC_MASK |
+        SIM_SCGC5_PORTD_MASK |
+        SIM_SCGC5_PORTE_MASK |
+        SIM_SCGC5_SLCD_MASK;
+
+    LCD->GCR |= LCD_GCR_PADSAFE_MASK;
+    LCD->GCR &= ~LCD_GCR_LCDEN_MASK;
+
+    PORTB->PCR[7] = PORT_PCR_MUX(0);
+	.
+	.
+	.
+	.
+    PORTE->PCR[5] = PORT_PCR_MUX(0);
+
+    LCD->GCR = LCD_GCR_RVTRIM(0x00) |
+        LCD_GCR_CPSEL_MASK |
+        LCD_GCR_LADJ(0x03) |
+        LCD_GCR_VSUPPLY_MASK |
+        LCD_GCR_ALTDIV(0x00) |
+        LCD_GCR_SOURCE_MASK |
+        LCD_GCR_LCLK(0x01) |
+        LCD_GCR_DUTY(0x03);
+
+    LCD->AR = LCD_AR_BRATE(0x00);
+    LCD->FDCR = 0x00000000;
+
+    LCD->PEN[0] = LCD_PEN_PEN(1u<<7u) |
+        LCD_PEN_PEN(1u<<8u) |
+        LCD_PEN_PEN(1u<<10u) |
+        LCD_PEN_PEN(1u<<11u) |
+        LCD_PEN_PEN(1u<<17u) |
+        LCD_PEN_PEN(1u<<18u) |
+        LCD_PEN_PEN(1u<<19u);
+
+    LCD->PEN[1] = LCD_PEN_PEN(1u<<5u) |
+        LCD_PEN_PEN(1u<<6u) |
+        LCD_PEN_PEN(1u<<8u) |
+        LCD_PEN_PEN(1u<<20u) |
+        LCD_PEN_PEN(1u<<21u);
+    LCD->BPEN[0] = LCD_BPEN_BPEN(1u<<18u) |
+        LCD_BPEN_BPEN(1u<<19u);
+    LCD->BPEN[1] = LCD_BPEN_BPEN(1u<<8u) |
+        LCD_BPEN_BPEN(1u<<20u);
+    LCD->WF[0] = LCD_WF_WF0(0x00) |
+        LCD_WF_WF1(0x00) |
+        LCD_WF_WF2(0x00) |
+        LCD_WF_WF3(0x00);
+    .
+	.
+	.
+	.
+	
+    LCD->WF[15] = LCD_WF_WF60(0x00) |
+        LCD_WF_WF61(0x00) |
+        LCD_WF_WF62(0x00) |
+        LCD_WF_WF63(0x00);
+
+    LCD->GCR &= ~LCD_GCR_PADSAFE_MASK;
+    LCD->GCR |= LCD_GCR_LCDEN_MASK;
+}
+
+void SegLCD_Set(uint8_t Value,uint8_t Digit)
+{
+    if (Digit > 4) {
+        SegLCD_DisplayError(0x01);
+    }
+    else {
+        switch (Value) {
+        case 0x00:
+            LCD->WF8B[LCD_Frontplane_Pin[((2*Digit)-2)]] =
+                (LCD_SEG_D | LCD_SEG_E |LCD_SEG_F);
+            LCD->WF8B[LCD_Frontplane_Pin[((2*Digit)-1)]] =
+                (LCD_SEG_A | LCD_SEG_B | LCD_SEG_C);
+            break;
+       .
+	   .
+	   .
+	   .
+        case 0x0F:
+            LCD->WF8B[LCD_Frontplane_Pin[((2*Digit)-2)]] =
+                (LCD_SEG_E | LCD_SEG_F | LCD_SEG_G);
+            LCD->WF8B[LCD_Frontplane_Pin[((2*Digit)-1)]] =
+                LCD_SEG_A;
+            break;
+        }
+    }
+}
+
+void lcd_displaytime(uint8_t Value1, uint8_t Value2)
+{
+    if ((Value1 > 99) | (Value2 > 99)) {
+        SegLCD_DisplayError(0x10);
+    }
+    else {
+        SegLCD_Set(Value1/10, 1);
+        SegLCD_Set(Value1 % 10, 2);
+        SegLCD_Set(Value2/10, 3);
+        SegLCD_Set(Value2 % 10, 4);
+        SegLCD_Col_On();
+    }
+}
+
+void SegLCD_DisplayError(uint8_t ErrorNum)
+{
+    LCD->WF8B[LCD_FRONTPLANE0] = (LCD_SEG_D | LCD_SEG_E | LCD_SEG_F | LCD_SEG_G);
+    LCD->WF8B[LCD_FRONTPLANE1] = (LCD_SEG_A);
+    LCD->WF8B[LCD_FRONTPLANE2] = (LCD_SEG_E | LCD_SEG_G);
+    LCD->WF8B[LCD_FRONTPLANE3] = (LCD_CLEAR);
+    LCD->WF8B[LCD_FRONTPLANE4] = (LCD_SEG_E | LCD_SEG_G);
+    LCD->WF8B[LCD_FRONTPLANE5] = (LCD_CLEAR);
+    if (ErrorNum < 0x10) {
+        SegLCD_Set(ErrorNum,4);
+    }
+    else {
+        LCD->WF8B[LCD_FRONTPLANE6] = (LCD_CLEAR);
+        LCD->WF8B[LCD_FRONTPLANE7] = (LCD_CLEAR);
+    }
+}
+</code>
+</pre>
+      <div id="uRTC"></div>
+      <br>
+      <br>Now, real time clock is the thing here. We even added the flashing dots to visualise the real clock <br>
+      <pre>
+		  		  <code data-language="C">
+int rtc_count = 0;
+
+void rtc_init()
+{
+    /* Clock for rtc */
+    SIM->SCGC6 |= SIM_SCGC6_RTC_MASK;
+
+    /* Ensure PTC1 is configured as RTC input clock */
+    PORTC->PCR[1] &= ~PORT_PCR_MUX_MASK;
+    PORTC->PCR[1] = PORT_PCR_MUX(1);
+
+    /* Clear the OSC32KSEL field to select osc */
+    SIM->SOPT1 &= ~SIM_SOPT1_OSC32KSEL_MASK;
+	
+    /* RTC_CLKIN selected as the ERCLK32K */
+    SIM->SOPT1 |= SIM_SOPT1_OSC32KSEL(2);
+
+    /* Set the oscillator enable bit */
+    OSC0->CR |= OSC_CR_ERCLKEN_MASK;
+	
+    /* Clear any pending itnerupts */
+    NVIC_ClearPendingIRQ(RTC_Seconds_IRQn);
+    NVIC_EnableIRQ(RTC_Seconds_IRQn);
+    NVIC_SetPriority(RTC_Seconds_IRQn, 2);
+
+    /* Time seconds interrupt enable */
+    RTC->IER |= RTC_IER_TSIE_MASK;
+		
+    RTC->TSR =  0;							// time counter enable
+    RTC->SR |= RTC_SR_TCE_MASK;
+}
+
+void RTC_Seconds_IRQHandler()
+{
+				if(++rtc_count == 59){
+					time_counting(&minutes,&seconds ,1);
+					lcd_displaytime(minutes,seconds);
+					rtc_count = 0;
+} 
+				if(rtc_count%2==0)						// flashing of dots between hours and minutes
+				{   				
+				SegLCD_Col_On();
+				} 
+				else			
+					SegLCD_Col_Off();
+}
+</code>
+</pre>
+      <div id="uTimer"></div>
+      <br>
+      <br>Timer is designed to be the most global it could be, so that in case of any changes it is still reliable<br>
+      <pre>
+		  		  <code data-language="C">
+void time_counting(uint8_t *min, uint8_t *sec, uint8_t val)
+{
+		
+    uint8_t m_i = (*sec+val)/60;
+		*min = (*min+m_i)%24;
+    *sec = (*sec+val)%60;
+}
+
+
+void time_reset(uint8_t *seconds, uint8_t *minutes)
+{
+    *minutes = 0;
+    *seconds = 0;
+}
+
+</code>
+</pre>
+      <div id="uBoard"></div>
+      <br>
+	  <p> Full project with all Keil uVision dependencies can be found on my github page here:
+	  <a href='https://github.com/MLateralus/Embedded_ARM'> MLateralus Embedded_ARM</a>
+	  </p>
+      <br>Board:<br>
+      MKL46Z256VLL4MCU – 48 MHz<br>256 KB flash, <br>32 KB SRAM, <br>segment LCD, USB OTG (FS) <br>
+      Capacitive touch slider,<br> MMA8451Q accelerometer,<br> MAG3110 magnetometer
+      <br>Flexible power supply options – USB<br>
+      OpenSDA debug interface
+      <br>Mass storage device flash programming interface (default)
+      <br>
+      <br>		  You can read more here:
+      <a href="http://www.nxp.com/products/software-and-tools/hardware-development-tools/freedom-development-boards/freedom-development-platform-for-kinetis-kl3x-and-kl4x-mcus:FRDM-KL46Z?" style="color: #000000">LINK</a>
+      <br>
+      </code>
+      </pre>
+   </div>
+</div>
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; MLateralus 2016</p>
                 </div>
             </div>
         </div>
