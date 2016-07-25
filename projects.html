@@ -491,10 +491,165 @@ void time_reset(uint8_t *seconds, uint8_t *minutes)
       <br>		  You can read more here:
       <a href="http://www.nxp.com/products/software-and-tools/hardware-development-tools/freedom-development-boards/freedom-development-platform-for-kinetis-kl3x-and-kl4x-mcus:FRDM-KL46Z?" style="color: #000000">LINK</a>
       <br>
-      </code>
-      </pre>
+
    </div>
+   
+  <div id = "curr-follow">
+  This project was about playing a little with Java parser. I called it a Currency Follower, beause it actualy follows current currency values and compare them with values in the beginign of the month. 
+		  The data is then compared to present currency rises / falls. Initialy I also implemented Log4j in order to get the raw data and then print a graphical representation of it, but due to a deadline it has never been implemented here.
+          Application has been written in Java language with the use of Eclipse studio
+		  Below you may see the code snipset along with the documentation and demo sample.
+		  <br>Main extensions used are: Swing, Jsoup and jframe.
+		  <br> All the necessary imports:
+		  <pre><code data-language="Java">
+import java.awt.Component;
+import java.awt.ComponentOrientation;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+</code>
+</pre>
+<br> Main class contains mostly declarations of visible elements. I decided to use JFrame because it is easy to use. Although it does not provide highly customizable content, it is enough for this purpose
+<br><pre><code data-language="Java">
+public class Javs
+extends JFrame {
+    JButton Button0;
+    JPanel display;
+    JPanel MyPanel;
+    JTextArea t;
+    JTextArea z;
+    JTextArea q;
+    public static String Strin;
+    public static String Strin2;
+
+public Javs() {
+	this.makeUI();
+}
+
+private void makeUI() {
+	this.setDefaultCloseOperation(3);
+	this.setSize(780, 700);
+	this.Button0 = new JButton("Get data!");
+	this.t = new JTextArea(30, 30);
+	this.z = new JTextArea(30, 30);
+	this.q = new JTextArea(5, 5);
+	this.t.setEditable(false);
+	this.z.setEditable(false);
+	this.q.setEditable(false);
+	this.t.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+	this.z.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+	this.MyPanel = new JPanel();
+	this.display = new JPanel();
+	Font font = new Font("Verdana", 1, 12);
+	this.t.setFont(font);
+	this.z.setFont(font);
+	this.q.setFont(font);
+	this.display.add(this.t);
+	this.display.add(this.z);
+	this.MyPanel.add(this.Button0);
+	this.add((Component)this.display, "West");
+	this.add((Component)this.MyPanel, "Center");
+	this.add((Component)this.Button0, "North");
+	this.add((Component)this.q, "South");
+	this.t.addKeyListener((KeyListener)new /* Unavailable Anonymous Inner Class!! */);
+	this.Button0.addActionListener((ActionListener)new /* Unavailable Anonymous Inner Class!! */);
+}
+</code>
+</pre>
+<br> Next I define listener on a button that starts the action. Once the button is pressed, program clears the previous values and loads new from the given website.
+<pre><code data-language="Java">
+void typeOnt(KeyEvent e) {
+	e.consume();
+}
+
+void Button0pressed(ActionEvent e) {
+	this.t.setText(null);
+	this.z.setText(null);
+	this.q.setText(null);
+try {
+	Elements tds;
+	Document doc = Jsoup.connect((String)"http://www.nbp.pl/******* security constains *******").get();
+	Document doc2 = Jsoup.connect((String)"http://www.nbp.pl/******* security constrains *******").get();
+	String title = doc.title();
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	Date date = new Date();
+	this.t.setText(String.valueOf(this.t.getText()) + title + "\n");
+	this.t.setText(String.valueOf(this.t.getText()) + "Data from : " + dateFormat.format(date) + "\n");
+	this.z.setText(String.valueOf(this.z.getText()) + "Currencies : " + "\n");
+	this.z.setText(String.valueOf(this.z.getText()) + "Data from : 2015/06/01" + "\n");
+	for (Element table22 : doc.select("table[width=361]")) {
+		for (Element row : table22.select("tr")) {
+			tds = row.select("td");
+			if (tds.size() <= 2) continue;
+			this.t.setText(String.valueOf(this.t.getText()) + ((Element)tds.get(0)).text() + ":" + ((Element)tds.get(1)).text() + ":" + ((Element)tds.get(2)).text() + "\n");
+		}
+	}
+	</code>
+</pre>
+<br> Here the fun begins. Back then when I was starting to play with Java i used to love nested loops. First it came out with a tedious performance but at a time I had no better idea.
+<br> None the less, the for loops are sued as selectors to query data from tables on the page. Then the program compares each values with each and presents the result in the box below
+<br>
+<pre><code data-language="Java">
+
+for (Element table22 : doc2.select("table[width=386]")) {
+	for (Element row : table22.select("tr")) {
+		tds = row.select("td");
+		if (tds.size() <= 2) continue;
+		this.z.setText(String.valueOf(this.z.getText()) + ((Element)tds.get(0)).text() + ":" + ((Element)tds.get(1)).text() + ":" + ((Element)tds.get(2)).text() + "\n");
+	}
+}
+for (Element table22 : doc.select("table[width=361]")) {
+	for (Element table1 : doc2.select("table[width=386]")) {
+		for (Element row1 : table1.select("tr")) {
+			Elements tds1 = row1.select("td");
+			for (Element row : table22.select("tr")) {
+				float Value2;
+				Elements tds2 = row.select("td");
+				if (tds1.size() <= 2 || tds2.size() <= 2) continue;
+				Strin = ((Element)tds2.get(2)).text();
+				Strin = Strin.toString();
+				Strin = Strin.replaceAll(",", ".");
+				Strin2 = ((Element)tds1.get(2)).text();
+				Strin2 = Strin2.toString();
+				Strin2 = Strin2.replaceAll(",", ".");
+				float Value1 = Float.parseFloat(Strin);
+				if (Value1 > (Value2 = Float.parseFloat(Strin2))) {
+					this.q.setText("Value of : " + ((Element)tds2.get(0)).text() + " raised !");
+					continue;
+				}
+				this.q.setText("Value of : " + ((Element)tds2.get(0)).text() + " fallen ");
+			}
+		}
+	}
+
+catch (IOException a) {
+	a.printStackTrace();
+}
+
+
+public static void main(String[] args) {
+	new Javs().setVisible(true);
+}
+</code>
+		</pre>
+		</div>
+	
+  </div>
 </div>
+
     <footer>
         <div class="container">
             <div class="row">

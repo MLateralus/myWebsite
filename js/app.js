@@ -3,12 +3,14 @@
     .controller('tabCtrl',['$scope',function($scope){
         $scope.tabs = [
 		{
-			linker: 'curr-folow',
+			linker: 'custom-scripts',
+			id:"Scripts",
+			content: "Custom Scripts"
+		},
+		{
+			linker: 'curr-follow',
             id:"Currency Follower",
-			introduction: "This is an introduction",
-            content:'This is a default tab on loadThis is a default tab on ' +
-			'loadThis is a default tab on loadThis is a default tab on loadThis is a default tab on loadThis is a default tab on loadThis is a default tab on loadThis is a default ' +
-			'tab on loadThis is a default tab on loadThis is a default tab on loadThis is a default tab on loadThis is a default tab on loadThis is a default tab on loadThis is a default tab on loadThis is a default tab on load'
+			introduction: "Currency Follower",
 		},
 		{
 			linker: 'embed-clock',
@@ -18,8 +20,7 @@
 		{
 			linker: 'voice-assist',
 			id:"Voice Assistant",
-			content:'This is a default tab on loadThis is a default tab on ' +
-			'loadThis is a default tab on loadThis is a default tab on loadThis is a default tab on loadThis is a default tab on loadThis is a default tab on loadThis is a default '
+			content: 'Available on GitHub, for now..  https://github.com/MLateralus/VirtualVoiceAssistant '
 		},
 		{
 			linker: 'packtpub',
@@ -32,11 +33,6 @@
 			+ ' All that is requires it a chromedriver.exe, which you cna download anywhere.',
 			content: ' Quick review: '
 			
-		},
-		{
-			linker: 'custom-scripts',
-			id:"Scripts",
-			content: "tab4"
 		}]
 
         $scope.selectedTab = 0; 

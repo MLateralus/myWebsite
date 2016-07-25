@@ -6,7 +6,8 @@
 
 body {
     font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
-    background: url('../img/blackboard.jpg') no-repeat center center fixed;
+	background-color: #4c4cff;
+    background: url('../img/mount.jpg') no-repeat center center fixed;
 	linear-gradient(
       rgba(0, 0, 0, 0.3), 
       rgba(0, 0, 0, 0.3)
