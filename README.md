@@ -1,5 +1,8 @@
 # [Gh-pages]
 
+
+LINK : http://mlateralus.github.io/myWebsite/
+
 This is a MyWebsite 2.0 which is a newer version of my website. 
 While the old webstie was written almost puerly by hard typing and without much of any frameworks / libraries,
 this website will suposely have more of them. 
