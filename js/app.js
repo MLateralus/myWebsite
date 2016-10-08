@@ -5,7 +5,7 @@
 		{
 			linker: 'custom-scripts',
 			id:"Scripts",
-			content: "Custom Scripts"
+			content: "Custom Scripts" + " Get all packtpub books: https://github.com/MLateralus/RandomStuff/blob/master/GetAllPackpubBooks.js"
 		},
 		{
 			linker: 'curr-follow',
