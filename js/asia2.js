@@ -282,13 +282,13 @@ function runFilter(property, value){
 	
 	var resultSearch = [];
 	resultSearch = result.filter(function(produkt){
-		return produkt.moq >= document.getElementById("moq").value;
+		return produkt.moq <= (document.getElementById("moq").value || 20000);
 	});
 	resultSearch = resultSearch.filter(function(produkt){
-		return produkt.lead >= document.getElementById("lead").value;
+		return produkt.lead <= (document.getElementById("lead").value || 20000);
 	});
 	resultSearch = resultSearch.filter(function(produkt){
-		return produkt.cena >= document.getElementById("cena").value;
+		return produkt.cena <= (document.getElementById("cena").value || 20000);
 	});
 	
 	appendRecord(resultSearch)
