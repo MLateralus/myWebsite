@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="darts">
+    <meta name="author" content="darts">
+
+    <title>MLateralus asia</title>
+	<meta name="description" content="Website created by MLateralus as part of a learning process, and also storage 
+	for repositories. You may also find here some mountain climbing pictures and small scripts.">
+	<meta name="keywords" content="MLateralus, Michal, IT, programmer, scripts, 
+	hiking, mountain climbing, Java, JavaScript, C, Android, Service, student, university">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/business-casual.css" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+	
+</head>
+
+<body>
+    <!-- Navigation -->
+	<div class="box">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+					<a class="navbar-brand" href="index.html">MLateralus</a>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="index.html">Home</a>
+						</li>
+						<li>
+							<a href="projects.html">Projects</a>
+						</li>
+						<li>
+							<a href="asia.html">Asia</a>
+						</li>
+						<li>
+							<a href="contact.html">contact</a>
+						</li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container -->
+		</nav>
+	</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+					<hr>
+					<h2 class="intro-text text-center">Wybór produktu</h2>
+					<div class="col-md-4">
+						<label class="col-md-4 control-label" for="selectbasic">Produkt</label>
+						<select id="selectbasic" name="selectbasic" class="form-control" onchange="showSuppliers(selectbasic)"></select>
+						<br>
+						<br>
+					<div class="form-group">
+					  <label for="usr">Cena [EURO]:</label>
+					  <input type="text" class="form-control" id="cena" onkeyup="showSuppliers(cena)">
+					</div>
+					<div class="form-group">
+					  <label for="usr">MOQ [KG]:</label>
+					  <input type="text" class="form-control" id="moq" onkeyup="showSuppliers(moq)"> 
+					</div>
+					<div class="form-group">
+					  <label for="usr">Lead Time [dni]:</label>
+					  <input type="text" class="form-control" id="lead" onkeyup="showSuppliers(lead)">
+					</div>
+</div>
+						
+					<div id = "resultSearch" class =  "resultFilter" style="display: block">
+							<table cellspacing=0 border=1 id="filterResult">
+							<tr>
+								<th>Dostawca</th>
+								<th>nazwa surowca</th>
+								<th>MOQ [KG]</th>
+								<th>cena [EURO]</th>
+								<th>Lead time [dni]</th>
+							</tr>
+							</table>
+						</div>
+
+						</div>
+					<br>
+					<br>
+					<br>
+				</div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container -->
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p>Copyright &copy; MLateralus 2016</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+	<!-- Custom scripts -->
+	<script src="js/userAgent.js"> </script>
+	
+	<!-- Asia scripts -->
+	<script src="js/asia2.js"> </script>
+	
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
+
+</body>
+
+</html>

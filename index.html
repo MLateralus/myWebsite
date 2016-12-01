@@ -1,194 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="darts">
-    <meta name="author" content="darts">
-
-    <title>MLateralus website</title>
-	<meta name="description" content="Website created by MLateralus as part of a learning process, and also storage 
-	for repositories. You may also find here some mountain climbing pictures and small scripts.">
-	<meta name="keywords" content="MLateralus, Michal, IT, programmer, scripts, 
-	hiking, mountain climbing, Java, JavaScript, C, Android, Service, student, university">
-	
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/business-casual.css" rel="stylesheet">
-
-    <!-- Fonts -->
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-	
+	<meta charset="utf-8">
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<meta content="developer" name="description">
+	<meta content="developer" name="author">
+	<title>MLateralus website</title>
+	<meta content="Website created by MLateralus as part of a learning process, and also storage for repositories. You may also find here some mountain climbing pictures and small scripts." name="description">
+	<meta content="MLateralus, Michal, IT, programmer, scripts, hiking, mountain climbing, Java, JavaScript, C, Android, Service, student, university" name="keywords"
+	><!-- Bootstrap Core CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- Custom Fonts -->
+	<link href="css/FontAwsome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	<!-- Theme CSS -->
+	<link href="css/grayscale.css" rel="stylesheet"><!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 	<!-- Google Analytics -->
+
 	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-	  ga('create', 'UA-80715730-1', 'auto');
-	  ga('send', 'pageview');
+	     ga('create', 'UA-80715730-1', 'auto');
+	     ga('send', 'pageview');
 	</script>
-	
 </head>
-
-<body>
-    <!-- Navigation -->
-	<div class="box">
-		<nav class="navbar navbar-default" role="navigation">
+<body data-spy="scroll" data-target=".navbar-fixed-top" id="page-top">
+	<!-- Navigation -->
+	<nav class="navbar navbar-custom top-nav-collapse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle" data-target=".navbar-main-collapse" data-toggle="collapse" type="button">Menu <i class="fa fa-bars"></i></button> <a class="navbar-brand page-scroll" href="#page-top"
+				><i class="fa fa-chevron-up fa-fx2"></i> <span class="light"></span> MLateralus</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+				<ul class="nav navbar-nav">
+					<!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+					<li class="hidden">
+						<a href="#page-top"></a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#about">About</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#Skills">Skills</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#Projects">Projects</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="asia.html">Asia</a>
+					</li>
+					<li>
+						<a class="page-scroll" href="#Contact">Contact</a>
+					</li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+	<!-- Intro Header -->
+	<header class="intro">
+		<div class="intro-body">
 			<div class="container">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse-1">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-					<a class="navbar-brand" href="index.html">MLateralus</a>
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<h1 class="brand-heading">Mountain Top</h1>
+						<p class="intro-text">Web developer, scripter, sportsman<br>
+						And a little deep into science</p>
+                        <a href="#about" class="btn btn-circle page-scroll">
+                            <i class="fa fa-angle-double-down animated"></i>
+                        </a>
+					</div>
 				</div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-navbar-collapse-1">
-					<ul class="nav navbar-nav">
-						<li>
-							<a href="index.html">Home</a>
+			</div>
+		</div>
+	</header>
+	
+	<!-- About Section -->
+	<section class="container content-section text-center" id="about">
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				<h2>About</h2>
+				<p>I am Michael, an enthusiast of Web development, scripting, automation and science studies. I decided to estabilish this page in the beggining of 2016, as a testing enviroment for my ideas, and kind of portoflio in whatever form it comes.</p>
+				<p>Apart from technicals and science, I am into mountain climbing, volleyball, squash... and actualy most of sports daily. If what I wish comes true, I will make a gallery of places I had been to, that I consider a great trip.</p>
+			</div>
+		</div>
+	</section>
+	
+	<!-- Skills Section -->
+	<section class="content-section text-center" id="Skills">
+		<div class="skills-section">
+			<div class="container">
+				<h2>Skills</h2>
+				<p>I am constantly improving in the areas below.<br>
+				Focusing on pure JavaScript and algorithms as they seem most fun</p>
+				<div class="col-md-3">
+					<p class="biggerP">Web development</p>
+					<ul class="fa-ul">
+						<li class="skills-points">
+							<i aria-hidden="true" class="fa fa-html5 fa-3x cCyan"></i>
+							<p>HTML 5</p>
 						</li>
-						<li>
-							<a href="projects.html">Projects</a>
+						<li class="skills-points">
+							<i aria-hidden="true" class="fa fa-css3 fa-3x cCyan"></i>
+							<p>CSS 3</p>
 						</li>
-						<li>
-							<a href="asia.html">Asia</a>
+						<li class="skills-points">
+							<i aria-hidden="true" class="fa fa-file-code-o fa-3x cCyan"></i>
+							<p>XML</p>
 						</li>
-						<li>
-							<a href="contact.html">contact</a>
+						<li class="skills-points">
+							<i aria-hidden="true" class="fa fa-pencil-square-o fa-3x cCyan"></i>
+							<p>Photoshop / GIMP</p>
 						</li>
 					</ul>
 				</div>
-				<!-- /.navbar-collapse -->
+				<div class="col-md-3">
+					<p class="biggerP">Programming</p>
+					<ul class="fa-ul">
+						<li class="skills-points">
+							<i aria-hidden="true" class="fa fa-code fa-3x cRed"></i>
+							<p>Javascript</p>
+						</li>
+						<li class="skills-points">
+							<i aria-hidden="true" class="fa fa-code fa-3x cRed"></i>
+							<p>Java</p>
+						</li>
+						<li class="skills-points">
+							<i aria-hidden="true" class="fa fa-random fa-3x cRed"></i>
+							<p>Algorithms</p>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-3">
+					<p class="biggerP">Tools</p>
+					<ul class="fa-ul">
+						<li class="skills-points">
+							<i aria-hidden="true" class="fa fa-power-off fa-3x cBlue"></i>
+							<p>Service-Now</p>
+						</li>
+						<li class="skills-points">
+							<i aria-hidden="true" class="fa fa-github fa-3x cBlue"></i>
+							<p>GitHub</p>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-3">
+					<p class="biggerP">Other</p>
+					<div class="col-md-6">
+						<ul class="fa-ul">
+							<li class="skills-points">
+								<img src="img/angularjs-logo.png" style="width:40px; height: 40px;">
+								<p>AngularJS</p>
+							</li>
+							<li class="skills-points">
+								<img src="img/scrum.png" style="width:40px; height: 40px;">
+								<p>Agile</p>
+							</li>
+							<li class="skills-points">
+								<img src="img/jquery-icon.png" style="width:40px; height: 40px;">
+								<p>jQuery</p>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-6">
+						<ul class="fa-ul">
+							<li class="skills-points">
+								<i aria-hidden="true" class="fa fa-linux fa-3x"></i>
+								<p>Linux</p>
+							</li>
+							<li class="skills-points">
+								<i aria-hidden="true" class="fa fa-trello fa-3x"></i>
+								<p>Trello</p>
+							</li>
+							<li class="skills-points">
+								<img src="img/selenium.png" style="width:40px; height: 40px;">
+								<p>Selenium</p>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
-			<!-- /.container -->
-		</nav>
-	</div>
-	<div class="container">
-        <div class="row">
-            <div class="box">
-                <div class="col-lg-12 text-center">
+		</div>
+	</section>
+
+	<!-- Projects Section -->
+	<section class="content-section text-center" id="Projects">
+		<div class="projects-section">
+			<div class="row">
+			<div class="col-lg-8 col-lg-offset-2">
+				<h2>Projects</h2>
+				<div class="Youtube">
+					<p><i class="fa fa-youtube-play fa-2x" aria-hidden="true"></i> Youtube-Now-Playing</p> 
+					<p>
+					Did you ever just let youtube take you some places with its autoplay function ?  Sometimes you may end up with a catch song and would like to know what is currently playing. Now this can be done without having to swtich to browser window with notification about what is currently playing. Each time, video switches to new one, a notification comes to desktop to inform you what is the title of the video. 
+					<br>
+					Requires TamperMoneky / Grease Monkey or any plugin that allows you to embed a script on a website.
+					</p>
+					
+					
+					<i class="fa fa-github fa-2x"></i><a href="https://github.com/MLateralus/Youtube-Now-Playing"> Youtube Now-Playing </a> </p>
+				</div>
 				
-                    <div id="carousel-main" class="carousel slide">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators hidden-xs">
-                            <li data-target="#carousel-main" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-main" data-slide-to="1"></li>
-                            <li data-target="#carousel-main" data-slide-to="2"></li>
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img class="img-responsive img-full" src="img/Przelecz_swinica.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img class="img-responsive img-full" src="img/Etna.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img class="img-responsive img-full" src="img/Chopok.jpg" alt="">
-                            </div>
-                        </div>
-
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-main" data-slide="prev">
-                            <span class="icon-prev"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-main" data-slide="next">
-                            <span class="icon-next"></span>
-                        </a>
-                    </div>
+				<div class="Voice">
+					<p><i class="fa fa-mobile fa-3x" aria-hidden="true"></i>VirtualVoiceAssistant</p> 
 					
-                    <h2 class="brand-before">
-                        <small>Welcome to the</small>
-                    </h2>
-                    <h1 class="brand-name">Mountain Top</h1>
-                    <!--
-					<hr class="tagline-divider">  <-- this is a nice divided
-                    -->
+					<p>
+					This is a project created for my Bachelor degree. It is an application written in Java for Android 4.2+
+					The application serves most basic purposes assisting with using the phone like calling, writing text messages, setting alaram and so.
+					Trough out the project I realized that in order to accomplish a kind of real person assistant, some AI would be essential.
+					None the less it is an usefull application.
+					</p>
 					
-                </div>
-            </div>
-        </div>
+					<i class="fa fa-github fa-2x"></i> <a href="https://github.com/MLateralus/VirtualVoiceAssistant"> Voice Assistant for Android </a></p>
+				</div>
+				<div class="Currency">
+					<p><i class="fa fa-usd fa-2x" aria-hidden="true"></i>Currency Follower</p> 
+					
+					<p>
+					This handy Java application uses Jsoup and log4j to follow currency changes on a specyfic website and the present it in a comparison type of form.
+					Following changes on most recognized currencies and checking for rises / falls comapring to first day of current month.
+					Computional complexity is way to high, but concerning non-changable, small size of data it is sufficient for now.
+					</p>
+					
+					<i class="fa fa-github fa-2x"></i> <a href="https://github.com/MLateralus/CurrencyFollower"> Currency Follower</a></p>
+				</div>
+				<div class="Random">
+					<p><i class="fa fa-arrows-alt fa-2x" aria-hidden="true"></i>Random Stuff</p> 
+					
+					<p>
+					Now this one contains some random scripts with wide range of uses. For example:
+					<br>
+					Books Helper is a tool that uses Selenium with Java to simulate user and get a free copy of daily book from Packtpub.com
+					<br>
+					Stars rating for anything -> a section of 5 stars with on mouse over events that can be used as a rating system for any purpose.
+					<br>
+					Some of the rest are scripts written in WebGL, that is a web representation of OpenGL standard form graphics engine.
+					Those scripts utilize graphic computation power to display simple objects and textures as well as animations and advanced topics.
+					</p>
+					
+					<i class="fa fa-github fa-2x"></i> <a href="https://github.com/MLateralus/RandomStuff"> Random Stuff</a></p>
+				</div>
+			</div>
+			</div>
+		</div>
+		
+	</section>
 	
-
-
-        <div class="row">
-            <div class="box">
-                <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">About 
-                      <!--  <strong>Me</strong>  -->
-                    </h2>
-                    <hr>
-                    <img class="img-responsive img-border img-circle img-left" src="img/intro-pic.jpg" alt="">
-                    <hr class="visible-xs">
-                    <p> I am Michael, an enthusiast of Web development, scripting and automation. I decided to estabilish this page in the beggining of 2016, as a testing enviroment for my ideas, as kind of portoflio in whatever form it comes.  </p>
-					<hr class="tagline-divider">
-					<p> Apart from technicals, I am into mountain climbing, volleyball, squash... and actualy most of sports daily. If what I wish comes true, I will make a gallery of places I had been, that I consider a great trip. </p>
-					<hr class="tagline-divider">
-					<p> Please navigate to each section with a header bar at top. </p>
-                </div>
-            </div>
-        </div>
-<!--
-        <div class="row">
-            <div class="box">
-                <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">Placeholder
-                        <strong>for future</strong>
-                    </h2>
-                    <hr>
-                    <p>Some info here</p>
-                </div>
-            </div>
-        </div>
--->
-    </div>
-    <!-- /.container -->
-
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <p>Copyright &copy; MLateralus 2016</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
 	
-	<!-- Angular JS -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
-	<!-- Custom scripts -->
-	<script src="js/userAgent.js"> </script>
+	<!-- Contact Section -->
+	<section class="content-section text-center" id="Contact">
+		<div class="contact-section">
+			<div class="container">
+					<h2>Contact</h2>
+					<!-- 
+				<div class="col-md-6">
+                    <!-- Embedded Google Map using an iframe - to select your location find it on Google maps and paste the link as the iframe src. If you want to use the Google Maps API instead then have at it! -->
+                    <!-- <iframe width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=52.7806472,11.528789&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe> 
+                </div>
+				-->
+                <div class="col-md-12">
+				<br>
+				<p>Feel free to contact me with suggestions, issues, and comments
+				I tend to check my email couple times a day</p>
+				<div class="" >
+                    <p><i class="fa fa-github fa-2x"></i>   Github:
+                        <strong><a href="https://github.com/MLateralus">    MLateralus </a></strong>
+                    </p>
+                    <p><i class="fa fa-google fa-2x"></i>   Email:
+                        <strong><a href="michal.czerwien@gmail.com">  michal.czerwien@gmail.com</a></strong>
+                    </p>
+                    <p><i class="fa fa-address-book-o fa-2x"></i>   Address:
+                        <strong>  Poland </strong>
+                    </p>
+					</div>
+                </div>
+			</div>
+		</div>
+	</section>
 	
-    <!-- Script to Activate the Carousel -->
-    <script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-    </script>
-
+	<!-- Footer -->
+	<footer>
+		<footer>
+			<div class="container text-center">
+				<p>Copyright &copy; MLateralus 2016</p>
+			</div>
+		</footer>
+		
+		<!-- jQuery -->
+		<script src="js/jquery.js">
+		</script>
+		
+		<!-- Bootstrap Core JavaScript -->
+		<script src="js/bootstrap.min.js">
+		</script>
+		
+		<!-- Plugin JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js">
+		</script>
+		
+		<!-- Theme JavaScript   -->
+		<script src="js/custom.js">
+		</script> 
+	</footer>
 </body>
-
 </html>
