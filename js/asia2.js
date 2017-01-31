@@ -321,6 +321,7 @@ function appendRecord(obj){
 		node.appendChild(nodeLead);
 
 		document.getElementById("filterResult").appendChild(node);
+		document.getElementById("response").innerHTML = "Najlepszym dostawcą spełniającym dane kryteria jest: " + " ….., oferujący najniższą cenę, przy MOQ równym … oraz czasie realizacji …."
 	}
 }
 

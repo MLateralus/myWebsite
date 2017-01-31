@@ -34,67 +34,15 @@
 	     ga('send', 'pageview');
 	</script>
 </head>
-<body data-spy="scroll" data-target=".navbar-fixed-top" id="page-top">
-	<!-- Navigation -->
-	<nav class="navbar navbar-custom top-nav-collapse navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button class="navbar-toggle" data-target=".navbar-main-collapse" data-toggle="collapse" type="button">Menu <i class="fa fa-bars"></i></button> <a class="navbar-brand page-scroll" href="#page-top"
-				><i class="fa fa-chevron-up fa-fx2"></i> <span class="light"></span> MLateralus</a>
-			</div>
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-				<ul class="nav navbar-nav">
-					<!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-					<li class="hidden">
-						<a href="#page-top"></a>
-					</li>
-					<li>
-						<a class="page-scroll" href="index.html#about">About</a>
-					</li>
-					<li>
-						<a class="page-scroll" href="index.html#Skills">Skills</a>
-					</li>
-					<li>
-						<a class="page-scroll" href="index.html#Projects">Projects</a>
-					</li>
-					<li>
-						<a class="page-scroll" href="asia.html">Asia</a>
-					</li>
-					<li>
-						<a class="page-scroll" href="index.html#Contact">Contact</a>
-					</li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</div>
-		<!-- /.container -->
-	</nav>
-	<!-- Intro Header -->
-	<header class="intro">
-		<div class="intro-body">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
-						<h1 class="brand-heading">Mountain Top</h1>
-						<p class="intro-text">Web developer, scripter, sportsman<br>
-						And a little deep into science</p>
-                        <a href="#about" class="btn btn-circle page-scroll">
-                            <i class="fa fa-angle-double-down animated"></i>
-                        </a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-	
+<body data-spy="scroll" data-target=".navbar-fixed-top" id="page-top" style="background: white !important">
+	<div class = "asia" style="color: black">
 	<!-- About Section -->
 	<section class="container content-section text-center" id="about">
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2">
-									<h2 class="intro-text text-center">Wybór produktu</h2>
+									<h2 class="intro-text text-center">SYSTEM EKSPERCKI- WYBÓR DOSTAWCY</h2>
 					<div class="col-md-4">
-						<label class="col-md-4 control-label" for="selectbasic">Produkt</label>
+						<label class="col-md-4 control-label" for="selectbasic">Nazwa Surowca</label>
 						<select id="selectbasic" name="selectbasic" class="form-control" onchange="showSuppliers(selectbasic)"></select>
 						<br>
 						<br>
@@ -111,8 +59,8 @@
 					  <input type="text" class="form-control" id="lead" onkeyup="showSuppliers(lead)">
 					</div>
 </div>
-						
-					<div id = "resultSearch" class = "resultFilter col-md-8" style="display: block">
+
+					<div id = "resultSearch" class = "resultFilter col-md-12" style="display: block; margin-top:20px;">
 							<table cellspacing=0 border=1 id="filterResult">
 							<tr>
 								<th>Dostawca</th>
@@ -122,11 +70,21 @@
 								<th>Lead time [dni]</th>
 							</tr>
 							</table>
+							<br>
+							<br>
+							<div id="response">
+							
+</div>
 						</div>
-
+						
 			</div>
 		</div>
+			<div class = "resultFilter col-md-12">
+	<img src = "img/material.jpg" style="margin-top: 80px;">
+	<div>
 	</section>
+
+	</div>
 	
 	<!-- Footer -->
 	<footer>
