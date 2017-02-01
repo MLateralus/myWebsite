@@ -39,26 +39,46 @@
 	<!-- About Section -->
 	<section class="container content-section text-center" id="about">
 		<div class="row">
-			<div class="col-lg-8 col-lg-offset-2">
+			<div class="col-lg-10">
 									<h2 class="intro-text text-center">SYSTEM EKSPERCKI- WYBÓR DOSTAWCY</h2>
-					<div class="col-md-4">
+					<div class="col-md-12">
 						<label class="col-md-4 control-label" for="selectbasic">Nazwa Surowca</label>
 						<select id="selectbasic" name="selectbasic" class="form-control" onchange="showSuppliers(selectbasic)"></select>
 						<br>
 						<br>
+						</div>
+						<div class="col-lg-10">
 					<div class="form-group">
-					  <label for="usr">Cena [EURO]:</label>
+					  <label for="usr">Cena [EURO] od:</label>
 					  <input type="text" class="form-control" id="cena" onkeyup="showSuppliers(cena)">
 					</div>
 					<div class="form-group">
-					  <label for="usr">MOQ [KG]:</label>
+					  <label for="usr">Cena [EURO] do:</label>
+					  <input type="text" class="form-control" id="cena2" onkeyup="showSuppliers(cena2)">
+					</div>
+					</div>
+					
+					<div class="col-lg-10">
+					<div class="form-group">
+					  <label for="usr">MOQ [KG] od:</label>
 					  <input type="text" class="form-control" id="moq" onkeyup="showSuppliers(moq)"> 
 					</div>
 					<div class="form-group">
-					  <label for="usr">Lead Time [dni]:</label>
+					  <label for="usr">MOQ [KG] do:</label>
+					  <input type="text" class="form-control" id="moq2" onkeyup="showSuppliers(moq2)"> 
+					</div>
+					</div>
+					<div class="col-lg-10">
+					<div class="form-group">
+					  <label for="usr">Lead Time [dni] od:</label>
 					  <input type="text" class="form-control" id="lead" onkeyup="showSuppliers(lead)">
 					</div>
-</div>
+										<div class="form-group">
+					  <label for="usr">Lead Time [dni] do:</label>
+					  <input type="text" class="form-control" id="lead2" onkeyup="showSuppliers(lead2)">
+					</div>
+					</div>
+
 
 					<div id = "resultSearch" class = "resultFilter col-md-12" style="display: block; margin-top:20px;">
 							<table cellspacing=0 border=1 id="filterResult">
@@ -79,7 +99,7 @@
 						
 			</div>
 		</div>
-			<div class = "resultFilter col-md-12">
+			<div class = "resultFilter col-lg-10">
 	<img src = "img/material.jpg" style="margin-top: 80px;">
 	<div>
 	</section>

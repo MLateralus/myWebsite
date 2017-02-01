@@ -269,6 +269,10 @@ function showSuppliers(elem) {
 		document.getElementById("moq").value = null;
 		document.getElementById("lead").value = null;
 		document.getElementById("cena").value = null;
+		
+		document.getElementById("moq2").value = null;
+		document.getElementById("lead2").value = null;
+		document.getElementById("cena2").value = null;
 	}
 }
 
@@ -282,13 +286,13 @@ function runFilter(property, value){
 	
 	var resultSearch = [];
 	resultSearch = result.filter(function(produkt){
-		return produkt.moq <= (document.getElementById("moq").value || 20000);
+		return produkt.moq <= (document.getElementById("moq2").value || 20000) && (produkt.moq  >= document.getElementById("moq").value);
 	});
 	resultSearch = resultSearch.filter(function(produkt){
-		return produkt.lead <= (document.getElementById("lead").value || 20000);
+		return produkt.lead <= (document.getElementById("lead2").value || 20000) && (produkt.lead >= document.getElementById("lead").value);
 	});
 	resultSearch = resultSearch.filter(function(produkt){
-		return produkt.cena <= (document.getElementById("cena").value || 20000);
+		return produkt.cena <= (document.getElementById("cena2").value || 20000) && (produkt.cena >= document.getElementById("cena").value);
 	});
 	
 	appendRecord(resultSearch)
@@ -321,8 +325,12 @@ function appendRecord(obj){
 		node.appendChild(nodeLead);
 
 		document.getElementById("filterResult").appendChild(node);
-		document.getElementById("response").innerHTML = "Najlepszym dostawcą spełniającym dane kryteria jest: " + " ….., oferujący najniższą cenę, przy MOQ równym … oraz czasie realizacji …."
 	}
+	var filterTable = document.getElementById("filterResult");
+	var dostawca = filterTable.children[1].children[0].innerHTML;
+	var topMOQ = filterTable.children[1].children[2].innerHTML;
+	var topLead = filterTable.children[1].children[2].innerHTML;
+	document.getElementById("response").innerHTML = "Najlepszym dostawcą spełniającym dane kryteria jest: " + dostawca +", oferujący najniższą cenę, przy MOQ równym: " + topMOQ + ", oraz czasie realizacji: " + topLead;
 }
 
 function onlyUnique(value, index, self) {

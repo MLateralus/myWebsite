@@ -155,6 +155,12 @@ a:focus {
   }
 }
 
+.form-group {
+	width:200px;
+	float: left;
+	margin-right: 40px;
+}
+
 .cCyan {
 	color: #42DCA3; 
 }
