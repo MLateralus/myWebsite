@@ -326,11 +326,18 @@ function appendRecord(obj){
 
 		document.getElementById("filterResult").appendChild(node);
 	}
+	
 	var filterTable = document.getElementById("filterResult");
-	var dostawca = filterTable.children[1].children[0].innerHTML;
-	var topMOQ = filterTable.children[1].children[2].innerHTML;
-	var topLead = filterTable.children[1].children[2].innerHTML;
-	document.getElementById("response").innerHTML = "Najlepszym dostawcą spełniającym dane kryteria jest: " + dostawca +", oferujący najniższą cenę, przy MOQ równym: " + topMOQ + ", oraz czasie realizacji: " + topLead;
+	var resultResponse = filterTable.children[1];
+
+	if(filterTable.children.length > 1){
+		var dostawca = filterTable.children[1].children[0].innerHTML;
+		var topMOQ = filterTable.children[1].children[2].innerHTML;
+		var topLead = filterTable.children[1].children[2].innerHTML;
+		document.getElementById("response").innerHTML = "Najlepszym dostawcą spełniającym dane kryteria jest: " + dostawca +", oferujący najniższą cenę, przy MOQ równym: " + topMOQ + ", oraz czasie realizacji: " + topLead;
+	} else {
+		document.getElementById("response").innerHTML = "Brak dostawców dla danych kryteriów";
+	}
 }
 
 function onlyUnique(value, index, self) {
