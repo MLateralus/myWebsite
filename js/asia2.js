@@ -333,8 +333,8 @@ function appendRecord(obj){
 	if(filterTable.children.length > 1){
 		var dostawca = filterTable.children[1].children[0].innerHTML;
 		var topMOQ = filterTable.children[1].children[2].innerHTML;
-		var topLead = filterTable.children[1].children[2].innerHTML;
-		document.getElementById("response").innerHTML = "Najlepszym dostawcą spełniającym dane kryteria jest: " + dostawca +", oferujący najniższą cenę, przy MOQ równym: " + topMOQ + ", oraz czasie realizacji: " + topLead;
+		var topLead = filterTable.children[1].children[4].innerHTML;
+		document.getElementById("response").innerHTML = "Najlepszym dostawcą spełniającym dane kryteria jest: " + dostawca +", oferujący najniższą cenę, przy MOQ równym: " + topMOQ + ", oraz czasie realizacji: " + topLead + " dni";
 	} else {
 		document.getElementById("response").innerHTML = "Brak dostawców dla danych kryteriów";
 	}
